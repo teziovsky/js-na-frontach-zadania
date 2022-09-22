@@ -3,12 +3,17 @@ import { ProductModel, ProductType } from "../types";
 export class Cart {
   private products: ProductModel[] = [];
 
-  constructor(private type: ProductType) {
+  constructor(private readonly type: ProductType) {
     this.type = type;
   }
 
   addProduct(product: ProductModel) {
-    this.products.push(product);
+    if (this.type === product.type) {
+      this.products.push(product);
+    } else {
+      // throw new Error("Product type is not correct");
+      console.error('\x1b[31m%s\x1b[0m', `${product.name} type is not correct!`);
+    }
   }
 
   getProducts() {
