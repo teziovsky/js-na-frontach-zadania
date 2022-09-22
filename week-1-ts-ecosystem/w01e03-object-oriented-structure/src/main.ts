@@ -17,27 +17,38 @@ const cart1 = new Cart("Buy Now");
 const book = new Product({ id: 1, name: "Book", count: 2, price: 100, type: "Buy Now" });
 const folder = new Product({ id: 2, name: "Folder", count: 5, price: 10, type: "Buy Now" });
 const notebook = new Product({ id: 3, name: "Notebook", count: 10, price: 8, type: "Buy Now" });
+const tablet = new Product({ id: 4, name: "Tablet", count: 2, price: 5900, type: "Auction" });
 
 cart1.addProduct(book);
 cart1.addProduct(folder);
 cart1.addProduct(notebook);
+cart1.addProduct(tablet);
 
 console.log();
-console.log("cart1 – Number of products in cart: ", cart1.getProductCount());
-console.log("cart1 – Sum of products price in cart: ", cart1.getTotalPrice());
+console.log("----------------------CART 1---------------------");
+console.log("Cart 1 – Products: ", cart1.getProducts());
+console.log("Cart 1 – Number of products in cart: ", cart1.getProductCount());
+console.log("Cart 1 – Sum of products price in cart: ", cart1.getTotalPrice());
+console.log("-------------------------------------------------");
 console.log();
 
 const cart2 = new Cart("Auction");
 
 const smartphone = new Product({ id: 1, name: "Smartphone", count: 10, price: 6499, type: "Auction" });
 const smartwatch = new Product({ id: 2, name: "Smartwatch", count: 50, price: 1999, type: "Auction" });
+const headphones = new Product({ id: 3, name: "Headphones", count: 100, price: 299, type: "Auction" });
 
 cart2.addProduct(smartphone);
 cart2.addProduct(smartwatch);
+cart2.updateProduct(2, headphones);
+cart2.deleteProduct(1);
 
 console.log();
-console.log("cart2 – Number of products in cart: ", cart2.getProductCount());
-console.log("cart2 – Sum of products price in cart: ", cart2.getTotalPrice());
+console.log("----------------------CART 2---------------------");
+console.log("Cart 2 – Products: ", cart2.getProducts());
+console.log("Cart 2 – Number of products in cart: ", cart2.getProductCount());
+console.log("Cart 2 – Sum of products price in cart: ", cart2.getTotalPrice());
+console.log("-------------------------------------------------");
 console.log();
 
 const cart3 = new Cart("Free");
@@ -53,6 +64,10 @@ cart3.addProduct(markers);
 cart3.addProduct(plasticine);
 
 console.log();
-console.log("cart3 – Number of products in cart: ", cart3.getProductCount());
-console.log("cart3 – Sum of products price in cart: ", cart3.getTotalPrice());
+console.log("----------------------CART 3---------------------");
+console.log("Cart 3 – Products: ", cart3.getProducts());
+console.log("Cart 3 – First Product: ", cart3.getOneProduct(1));
+console.log("Cart 3 – Number of products in cart: ", cart3.getProductCount());
+console.log("Cart 3 – Sum of products price in cart: ", cart3.getTotalPrice());
+console.log("-------------------------------------------------");
 console.log();
