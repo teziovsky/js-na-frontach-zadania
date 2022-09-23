@@ -1,7 +1,7 @@
-import { article, p } from "framework/dom-creators";
-import { Cart } from "types";
-import { cartItemSum } from "./cart-item-sum.component";
-import { cartItem } from "./cart-item.component";
+import { article, p } from "@/framework/dom-creators";
+import { Item } from "@/models/item";
+import { cartItemSum } from "@/shop/cart-item-sum.component";
+import { cartItem } from "@/shop/cart-item.component";
 
 export function cartPanel({ heading = "Cart Items", items }: Cart) {
   const $heading = p("panel-heading");

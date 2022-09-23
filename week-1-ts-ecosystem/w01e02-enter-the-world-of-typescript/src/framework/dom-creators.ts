@@ -1,4 +1,4 @@
-import { TagName } from "types";
+import { TagName } from "@/types";
 
 function createElement(tagName: TagName = "div", className: string = ""): HTMLElement | HTMLParagraphElement | HTMLDivElement {
   const element = document.createElement(tagName);

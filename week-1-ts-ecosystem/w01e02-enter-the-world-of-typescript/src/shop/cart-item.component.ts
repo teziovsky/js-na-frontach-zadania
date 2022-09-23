@@ -1,5 +1,5 @@
-import { div } from "framework/dom-creators";
-import { Item } from "types";
+import { div } from "@/framework/dom-creators";
+import { Item } from "@/models/item";
 
 export function cartItem({ name, amount, unit, price }: Item) {
   const $panelBlock = div("panel-block");

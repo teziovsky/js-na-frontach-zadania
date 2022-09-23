@@ -1,5 +1,4 @@
-import { Root } from "types";
-import { div, p, section } from "framework/dom-creators";
+import { div, p, section } from "@/framework/dom-creators";
 
 export function hero({ title, subTitle }: Root) {
   const $heroSection = section("hero is-link");
