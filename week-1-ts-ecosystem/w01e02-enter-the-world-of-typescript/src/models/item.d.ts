@@ -1,4 +1,4 @@
-import { Price } from "@/types";
+import { Price } from "@/models/price";
 
 export interface Item {
   name: string;
