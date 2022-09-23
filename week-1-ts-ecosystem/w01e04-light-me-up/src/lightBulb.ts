@@ -12,7 +12,9 @@ export class LightBulb {
 
   turnOnDuring(seconds: number) {
     for (let second = 0; second < seconds; second++) {
-      this.turnOn();
+      setTimeout(() => {
+        this.turnOn();
+      }, 1000 * second)
     }
   }
 }
