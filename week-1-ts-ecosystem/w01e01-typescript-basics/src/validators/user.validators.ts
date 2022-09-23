@@ -1,4 +1,4 @@
-import { User } from "../types";
+import { User } from "../models";
 
 export function hasAddress(user: User): boolean {
   return Boolean(user.address);
