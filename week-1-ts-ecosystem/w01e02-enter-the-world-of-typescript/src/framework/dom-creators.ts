@@ -1,6 +1,6 @@
 import { TagName } from "@/types";
 
-function createElement(tagName: TagName = "div", className: string = ""): HTMLElement | HTMLParagraphElement | HTMLDivElement {
+function createElement(tagName: TagName = "div", className: string = ""): HTMLElement {
   const element = document.createElement(tagName);
 
   if (className.length) {
