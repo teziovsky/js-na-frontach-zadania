@@ -1,6 +1,11 @@
 import { div, p, section } from "@/framework/dom-creators";
 
-export function hero({ title, subTitle }: Root) {
+interface Props {
+  title: string;
+  subTitle: string;
+}
+
+export function hero({ title, subTitle }: Props) {
   const $heroSection = section("hero is-link");
   const $heroBody = div("hero-body");
 
