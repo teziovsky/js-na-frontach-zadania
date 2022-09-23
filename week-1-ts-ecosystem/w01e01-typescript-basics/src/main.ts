@@ -6,8 +6,8 @@
  *
  * */
 
-import { User } from "./types";
-import { hasAddress, isAdult } from "./utils";
+import { User } from "./models";
+import { hasAddress, isAdult } from "./validators/user.validators";
 
 const user: User = {
   name: "Andy",
