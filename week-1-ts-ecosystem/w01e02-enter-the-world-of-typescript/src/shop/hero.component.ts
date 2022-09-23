@@ -1,6 +1,6 @@
 import { div, p, section } from "@/framework/dom-creators";
 
-interface Props {
+type Props = {
   title: string;
   subTitle: string;
 }

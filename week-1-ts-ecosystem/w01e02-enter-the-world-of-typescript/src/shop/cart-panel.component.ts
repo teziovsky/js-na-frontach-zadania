@@ -3,7 +3,7 @@ import { Item } from "@/models/item";
 import { cartItemSum } from "@/shop/cart-item-sum.component";
 import { cartItem } from "@/shop/cart-item.component";
 
-interface Props {
+type Props = {
   heading?: string;
   items: Item[];
 }
