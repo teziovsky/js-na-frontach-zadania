@@ -1,30 +1,32 @@
-import { faker } from "@faker-js/faker/locale/pl";
-import prompts from "prompts";
-import { productDetailsQuestions, productTypeQuestions } from "./questions";
+import { generateProducts } from "./steps/generateProducts.mjs";
+import { getProductDetails } from "./steps/getProductDetails.mjs";
+import { getProductType } from "./steps/getProductType.mjs";
+import { askForGenerateData } from "./steps/askForGenerateData.mjs";
+import { welcomeMessage } from "./steps/welcomeMessage.mjs";
 
 (async () => {
-  const { productType, generateData } = await prompts(productTypeQuestions);
+  // Show the welcome message
+  await welcomeMessage();
 
-  let productName, productQuantity, productPrice;
+  // Get the product type
+  const { type } = await getProductType();
+
+  // Ask to generate data
+  const { generateData } = await askForGenerateData();
 
   if (generateData) {
-    productName = faker.commerce.productName();
-    productQuantity = faker.datatype.number({ min: 1, max: 100 });
-    productPrice = faker.datatype.number({ min: 1 });
-  } else {
-    const productDetails = await prompts(productDetailsQuestions);
-    productName = productDetails.productName;
-    productQuantity = productDetails.productQuantity;
-    productPrice = productDetails.productPrice;
+    // Generate the products
+    const products = generateProducts(type);
+
+    // Show the generated products
+    console.table(products);
   }
 
-  const item = {
-    id: faker.datatype.uuid(),
-    name: productName,
-    quantity: productQuantity,
-    price: productPrice,
-  };
+  if (!generateData) {
+    // Ask for the product details
+    const product = await getProductDetails(type);
 
-  console.log("productType: ", productType);
-  console.log("item: ", item);
+    // Show the product details
+    console.log("product: ", product);
+  }
 })();
