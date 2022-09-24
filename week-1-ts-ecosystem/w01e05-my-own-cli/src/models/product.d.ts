@@ -1,4 +1,4 @@
-export type ProductType = "buyNow" | "forFree" | "auction";
+export type ProductType = "buyNow" | "forFree" | "auctions";
 
 export type Product = {
   id: string;

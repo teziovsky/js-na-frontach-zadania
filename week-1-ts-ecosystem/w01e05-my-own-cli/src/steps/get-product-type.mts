@@ -8,7 +8,7 @@ const questions: PromptObject[] = [
     choices: [
       { title: "Kup Teraz", value: "buyNow" },
       { title: "Za darmo", value: "forFree" },
-      { title: "Aukcja", value: "auction" },
+      { title: "Aukcja", value: "auctions" },
     ],
   },
 ];

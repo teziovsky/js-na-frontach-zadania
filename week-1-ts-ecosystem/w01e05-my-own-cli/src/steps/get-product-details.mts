@@ -26,11 +26,17 @@ export async function getProductDetails(type: ProductType) {
 
   const { name, quantity, price } = await prompts(questionByType);
 
-  return {
+  const item = {
     id: faker.datatype.uuid(),
     name,
     quantity,
     price: type !== "forFree" ? price : undefined,
     type,
   };
+
+  // Show the product details
+  console.log();
+  console.table(item);
+
+  return item;
 }

@@ -1,7 +1,9 @@
+import { Product } from "./models/product";
 import { generateProducts } from "./steps/generate-products.mjs";
 import { getProductDetails } from "./steps/get-product-details.mjs";
 import { getProductType } from "./steps/get-product-type.mjs";
 import { askForGenerateData } from "./steps/ask-for-generate-data.mjs";
+import { saveToFile } from "./steps/save-to-file.mjs";
 import { welcomeMessage } from "./steps/welcome-message.mjs";
 
 (async () => {
@@ -14,19 +16,23 @@ import { welcomeMessage } from "./steps/welcome-message.mjs";
   // Ask to generate data
   const { generateData } = await askForGenerateData();
 
+  const products: Product[] = [];
+
   if (generateData) {
     // Generate the products
-    const products = await generateProducts(type);
+    const items = await generateProducts(type);
 
-    // Show the generated products
-    console.table(products);
+    // Add the generated products to the products array
+    products.push(...items);
   }
 
   if (!generateData) {
     // Ask for the product details
-    const product = await getProductDetails(type);
+    const item = await getProductDetails(type);
 
-    // Show the product details
-    console.table(product);
+    // Add the product to the products array
+    products.push(item);
   }
+
+  await saveToFile(type, products);
 })();

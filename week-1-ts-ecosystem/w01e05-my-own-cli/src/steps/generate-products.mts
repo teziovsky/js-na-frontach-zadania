@@ -27,5 +27,9 @@ export async function generateProducts(type: ProductType) {
     type,
   }));
 
+   // Show the generated products
+  console.log();
+  console.table(items);
+
   return items;
 }
