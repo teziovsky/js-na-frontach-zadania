@@ -1,6 +1,6 @@
-import { TagName } from "@/types";
+type TagName = "p" | "div" | "section" | "article";
 
-function createElement(tagName: TagName = "div", className: string = ""): HTMLElement {
+function createElement<TAG extends TagName>(tagName: TAG, className: string = "") {
   const element = document.createElement(tagName);
 
   if (className.length) {
@@ -10,7 +10,7 @@ function createElement(tagName: TagName = "div", className: string = ""): HTMLEl
   return element;
 }
 
-export const p = (className: string = ""): HTMLElement => createElement("p", className);
-export const div = (className: string = ""): HTMLElement => createElement("div", className);
-export const section = (className: string = ""): HTMLElement => createElement("section", className);
-export const article = (className: string = ""): HTMLElement => createElement("article", className);
+export const p = (className = ""): HTMLParagraphElement => createElement("p", className);
+export const div = (className = ""): HTMLDivElement => createElement("div", className);
+export const section = (className = ""): HTMLElement => createElement("section", className);
+export const article = (className = ""): HTMLElement => createElement("article", className);
