@@ -1,34 +1,25 @@
-import { ProductModel, ProductType } from "../types";
+import { ProductModel, ProductType } from "../models/product";
 
-export class Cart {
-  private products: ProductModel[] = [];
+export class Cart<TYPE extends ProductType> {
+  private products: ProductModel<TYPE>[] = [];
 
-  constructor(private readonly type: ProductType) {
-    this.type = type;
-  }
-
-  addProduct(product: ProductModel) {
-    if (this.type === product.type) {
-      this.products.push(product);
-    } else {
-      // throw new Error("Product type is not correct");
-      console.error('\x1b[31m%s\x1b[0m', `${product.name} type is not correct!`);
-    }
+  addProduct(product: ProductModel<TYPE>) {
+    this.products.push(product);
   }
 
   getProducts() {
     return this.products;
   }
 
-  getOneProduct(id: ProductModel["id"]) {
+  getOneProduct(id: ProductModel<TYPE>["id"]) {
     return this.products.find(product => product.id === id);
   }
 
-  updateProduct(id: ProductModel["id"], product: ProductModel) {
+  updateProduct(id: ProductModel<TYPE>["id"], product: ProductModel<TYPE>) {
     this.products = this.products.map(p => p.id === id ? product : p);
   }
 
-  deleteProduct(id: ProductModel["id"]) {
+  deleteProduct(id: ProductModel<TYPE>["id"]) {
     this.products = this.products.filter(product => product.id !== id);
   }
 

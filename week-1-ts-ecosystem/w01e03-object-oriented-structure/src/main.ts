@@ -12,17 +12,17 @@ import { Cart, Product } from "./controllers";
  * - po prostu: wykaż, że przygotowana logika i modele danych — działają :)
  * */
 
-const cart1 = new Cart("Buy Now");
+const cart1 = new Cart<"Buy Now">();
 
-const book = new Product({ id: 1, name: "Book", count: 2, price: 100, type: "Buy Now" });
-const folder = new Product({ id: 2, name: "Folder", count: 5, price: 10, type: "Buy Now" });
-const notebook = new Product({ id: 3, name: "Notebook", count: 10, price: 8, type: "Buy Now" });
-const tablet = new Product({ id: 4, name: "Tablet", count: 2, price: 5900, type: "Auction" });
+const book = new Product<"Buy Now">({ id: 1, name: "Book", count: 2, price: 100, type: "Buy Now" });
+const folder = new Product<"Buy Now">({ id: 2, name: "Folder", count: 5, price: 10, type: "Buy Now" });
+const notebook = new Product<"Buy Now">({ id: 3, name: "Notebook", count: 10, price: 8, type: "Buy Now" });
+const tablet = new Product<"Auction">({ id: 4, name: "Tablet", count: 2, price: 5900, type: "Auction" });
 
 cart1.addProduct(book);
 cart1.addProduct(folder);
 cart1.addProduct(notebook);
-cart1.addProduct(tablet);
+// cart1.addProduct(tablet); // Error: Type '"Auction"' is not assignable to type '"Buy Now"'.
 
 console.log();
 console.log("----------------------CART 1---------------------");
@@ -32,11 +32,11 @@ console.log("Cart 1 – Sum of products price in cart: ", cart1.getTotalPrice())
 console.log("-------------------------------------------------");
 console.log();
 
-const cart2 = new Cart("Auction");
+const cart2 = new Cart<"Auction">();
 
-const smartphone = new Product({ id: 1, name: "Smartphone", count: 10, price: 6499, type: "Auction" });
-const smartwatch = new Product({ id: 2, name: "Smartwatch", count: 50, price: 1999, type: "Auction" });
-const headphones = new Product({ id: 3, name: "Headphones", count: 100, price: 299, type: "Auction" });
+const smartphone = new Product<"Auction">({ id: 1, name: "Smartphone", count: 10, price: 6499, type: "Auction" });
+const smartwatch = new Product<"Auction">({ id: 2, name: "Smartwatch", count: 50, price: 1999, type: "Auction" });
+const headphones = new Product<"Auction">({ id: 3, name: "Headphones", count: 100, price: 299, type: "Auction" });
 
 cart2.addProduct(smartphone);
 cart2.addProduct(smartwatch);
@@ -51,12 +51,12 @@ console.log("Cart 2 – Sum of products price in cart: ", cart2.getTotalPrice())
 console.log("-------------------------------------------------");
 console.log();
 
-const cart3 = new Cart("Free");
+const cart3 = new Cart<"Free">();
 
-const pen = new Product({ id: 1, name: "Pen", count: 2, type: "Free" });
-const crayons = new Product({ id: 2, name: "Crayons", count: 5, type: "Free" });
-const markers = new Product({ id: 3, name: "Markers", count: 10, type: "Free" });
-const plasticine = new Product({ id: 4, name: "Plasticine", count: 8, type: "Free" });
+const pen = new Product<"Free">({ id: 1, name: "Pen", count: 2, type: "Free" });
+const crayons = new Product<"Free">({ id: 2, name: "Crayons", count: 5, type: "Free" });
+const markers = new Product<"Free">({ id: 3, name: "Markers", count: 10, type: "Free" });
+const plasticine = new Product<"Free">({ id: 4, name: "Plasticine", count: 8, type: "Free" });
 
 cart3.addProduct(pen);
 cart3.addProduct(crayons);
