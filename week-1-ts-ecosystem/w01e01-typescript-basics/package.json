@@ -1,5 +1,13 @@
 {
   "name": "w01e01-typescript-basics",
   "version": "1.0.0",
-  "scripts": {}
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/main.ts",
+    "build": "tsc",
+    "preview": "node dist/main.js"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.20",
+    "ts-node": "10.9.1"
+  }
 }
