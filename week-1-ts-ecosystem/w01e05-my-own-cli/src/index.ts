@@ -1,8 +1,8 @@
-import { generateProducts } from "./steps/generateProducts.mjs";
-import { getProductDetails } from "./steps/getProductDetails.mjs";
-import { getProductType } from "./steps/getProductType.mjs";
-import { askForGenerateData } from "./steps/askForGenerateData.mjs";
-import { welcomeMessage } from "./steps/welcomeMessage.mjs";
+import { generateProducts } from "./steps/generate-products.mjs";
+import { getProductDetails } from "./steps/get-product-details.mjs";
+import { getProductType } from "./steps/get-product-type.mjs";
+import { askForGenerateData } from "./steps/ask-for-generate-data.mjs";
+import { welcomeMessage } from "./steps/welcome-message.mjs";
 
 (async () => {
   // Show the welcome message
@@ -16,7 +16,7 @@ import { welcomeMessage } from "./steps/welcomeMessage.mjs";
 
   if (generateData) {
     // Generate the products
-    const products = generateProducts(type);
+    const products = await generateProducts(type);
 
     // Show the generated products
     console.table(products);
@@ -27,6 +27,6 @@ import { welcomeMessage } from "./steps/welcomeMessage.mjs";
     const product = await getProductDetails(type);
 
     // Show the product details
-    console.log("product: ", product);
+    console.table(product);
   }
 })();

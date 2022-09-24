@@ -23,7 +23,7 @@ export async function generateProducts(type: ProductType) {
     id: faker.datatype.uuid(),
     name: faker.commerce.productName(),
     quantity: faker.datatype.number({ min: 1, max: 10 }),
-    price: parseFloat(faker.commerce.price()),
+    price: type !== "forFree" ? parseFloat(faker.commerce.price()) : undefined,
     type,
   }));
 

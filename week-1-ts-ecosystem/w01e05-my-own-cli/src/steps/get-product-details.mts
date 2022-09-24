@@ -22,13 +22,15 @@ export const questions: PromptObject[] = [
 ];
 
 export async function getProductDetails(type: ProductType) {
-  const { name, quantity, price } = await prompts(questions);
+  const questionByType = type !== "forFree" ? questions : questions.slice(0, 2);
 
-  const item = {
+  const { name, quantity, price } = await prompts(questionByType);
+
+  return {
     id: faker.datatype.uuid(),
     name,
     quantity,
-    price,
+    price: type !== "forFree" ? price : undefined,
     type,
   };
 }
