@@ -1,9 +1,11 @@
-import { ProductModel, ProductType } from "../models/product";
+import { AuctionProduct } from "../models/auctionProduct";
+import { BuyNowProduct } from "../models/buyNowProduct";
+import { FreeProduct } from "../models/freeProduct";
 
-export class Cart<TYPE extends ProductType> {
-  private products: ProductModel<TYPE>[] = [];
+export class Cart<TYPE extends BuyNowProduct | FreeProduct | AuctionProduct> {
+  private products: TYPE[] = [];
 
-  addProduct(product: ProductModel<TYPE>) {
+  addProduct(product: TYPE) {
     this.products.push(product);
   }
 
@@ -11,20 +13,26 @@ export class Cart<TYPE extends ProductType> {
     return this.products;
   }
 
-  getOneProduct(id: ProductModel<TYPE>["id"]) {
+  getOneProduct(id: TYPE["id"]) {
     return this.products.find(product => product.id === id);
   }
 
-  updateProduct(id: ProductModel<TYPE>["id"], product: ProductModel<TYPE>) {
+  updateProduct(id: TYPE["id"], product: TYPE) {
     this.products = this.products.map(p => p.id === id ? product : p);
   }
 
-  deleteProduct(id: ProductModel<TYPE>["id"]) {
+  deleteProduct(id: TYPE["id"]) {
     this.products = this.products.filter(product => product.id !== id);
   }
 
   getTotalPrice() {
-    return this.products.reduce((acc, product) => acc + (product.price ? (product.price * product.count) : 0), 0);
+    return this.products.reduce((acc, product) => {
+      if ("price" in product) {
+        return acc + (product.price * product.count);
+      }
+
+      return acc;
+    }, 0);
   }
 
   getProductCount() {

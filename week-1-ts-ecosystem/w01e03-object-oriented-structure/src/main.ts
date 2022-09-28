@@ -1,4 +1,7 @@
-import { Cart, Product } from "./controllers";
+import { Cart } from "./controllers";
+import { AuctionProduct } from "./models/auctionProduct";
+import { BuyNowProduct } from "./models/buyNowProduct";
+import { FreeProduct } from "./models/freeProduct";
 
 /**
  * To tutaj mamy "START" programu.
@@ -12,17 +15,17 @@ import { Cart, Product } from "./controllers";
  * - po prostu: wykaż, że przygotowana logika i modele danych — działają :)
  * */
 
-const cart1 = new Cart<"Buy Now">();
+const cart1 = new Cart<BuyNowProduct>();
 
-const book = new Product<"Buy Now">({ id: 1, name: "Book", count: 2, price: 100, type: "Buy Now" });
-const folder = new Product<"Buy Now">({ id: 2, name: "Folder", count: 5, price: 10, type: "Buy Now" });
-const notebook = new Product<"Buy Now">({ id: 3, name: "Notebook", count: 10, price: 8, type: "Buy Now" });
-const tablet = new Product<"Auction">({ id: 4, name: "Tablet", count: 2, price: 5900, type: "Auction" });
+const book = new BuyNowProduct(1, "Book", 2, 100, "Buy Now");
+const folder = new BuyNowProduct(2, "Folder", 5, 10, "Buy Now");
+const notebook = new BuyNowProduct(3, "Notebook", 10, 8, "Buy Now");
+const tablet = new AuctionProduct(4, "Tablet", 2, 5900, "Auction");
 
 cart1.addProduct(book);
 cart1.addProduct(folder);
 cart1.addProduct(notebook);
-// cart1.addProduct(tablet); // Error: Type '"Auction"' is not assignable to type '"Buy Now"'.
+// cart1.addProduct(tablet); // Error: Argument of type 'AuctionProduct' is not assignable to parameter of type 'BuyNowProduct'.
 
 console.log();
 console.log("----------------------CART 1---------------------");
@@ -32,11 +35,11 @@ console.log("Cart 1 – Sum of products price in cart: ", cart1.getTotalPrice())
 console.log("-------------------------------------------------");
 console.log();
 
-const cart2 = new Cart<"Auction">();
+const cart2 = new Cart<AuctionProduct>();
 
-const smartphone = new Product<"Auction">({ id: 1, name: "Smartphone", count: 10, price: 6499, type: "Auction" });
-const smartwatch = new Product<"Auction">({ id: 2, name: "Smartwatch", count: 50, price: 1999, type: "Auction" });
-const headphones = new Product<"Auction">({ id: 3, name: "Headphones", count: 100, price: 299, type: "Auction" });
+const smartphone = new AuctionProduct(1, "Smartphone", 10, 6499, "Auction");
+const smartwatch = new AuctionProduct(2, "Smartwatch", 50, 1999, "Auction");
+const headphones = new AuctionProduct(3, "Headphones", 100, 299, "Auction");
 
 cart2.addProduct(smartphone);
 cart2.addProduct(smartwatch);
@@ -51,12 +54,12 @@ console.log("Cart 2 – Sum of products price in cart: ", cart2.getTotalPrice())
 console.log("-------------------------------------------------");
 console.log();
 
-const cart3 = new Cart<"Free">();
+const cart3 = new Cart<FreeProduct>();
 
-const pen = new Product<"Free">({ id: 1, name: "Pen", count: 2, type: "Free" });
-const crayons = new Product<"Free">({ id: 2, name: "Crayons", count: 5, type: "Free" });
-const markers = new Product<"Free">({ id: 3, name: "Markers", count: 10, type: "Free" });
-const plasticine = new Product<"Free">({ id: 4, name: "Plasticine", count: 8, type: "Free" });
+const pen = new FreeProduct(1, "Pen", 2, "Free");
+const crayons = new FreeProduct(2, "Crayons", 5, "Free");
+const markers = new FreeProduct(3, "Markers", 10, "Free");
+const plasticine = new FreeProduct(4, "Plasticine", 8, "Free");
 
 cart3.addProduct(pen);
 cart3.addProduct(crayons);
