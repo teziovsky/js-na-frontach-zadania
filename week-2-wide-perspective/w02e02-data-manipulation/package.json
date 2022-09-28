@@ -1,5 +1,14 @@
 {
   "name": "w02e02-data-manipulation",
   "version": "1.0.0",
-  "dependencies": {}
+  "type": "module",
+  "scripts": {
+    "generate-db": "node ./scripts/generate-db.js",
+    "api": "npm run generate-db && json-server --watch src/orders/db.json --port 3001",
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "json-server": "0.17.0",
+    "vite": "3.1.4"
+  }
 }
