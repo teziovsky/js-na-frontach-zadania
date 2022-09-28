@@ -2,7 +2,7 @@
   "name": "w01e03-object-oriented-structure",
   "version": "1.0.0",
   "scripts": {
-    "dev": "nodemon --exec ts-node src/main.ts",
+    "dev": "nodemon src/main.ts",
     "build": "tsc",
     "preview": "node dist/main.js"
   },
