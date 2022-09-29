@@ -1,5 +1,14 @@
 {
   "name": "w02e04-dungeons-and-the-princess",
   "version": "1.0.0",
-  "dependencies": {}
+  "scripts": {
+    "dev": "nodemon src/main.ts",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.20",
+    "ts-node": "10.9.1",
+    "tsc": "2.0.4",
+    "typescript": "4.8.3"
+  }
 }
