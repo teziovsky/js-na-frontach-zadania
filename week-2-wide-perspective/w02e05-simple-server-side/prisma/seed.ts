@@ -4,16 +4,19 @@ const prisma = new PrismaClient();
 
 const clientData: Prisma.ClientCreateInput[] = [
   {
-    email: "andy@prisma.io",
     name: "Andy",
+    email: "andy@prisma.io",
+    password: "Password123",
   },
   {
-    email: "dereck@prisma.io",
     name: "Dereck",
+    email: "dereck@prisma.io",
+    password: "Password123",
   },
   {
-    email: "nathan@prisma.io",
     name: "Nathan",
+    email: "nathan@prisma.io",
+    password: "Password123",
   },
 ];
 
@@ -35,7 +38,18 @@ const orderData: Prisma.OrderCreateInput[] = [
         id: 1,
       },
     },
-    products: {
+  },
+];
+
+const orderOfProductsData: Prisma.OrderOfProductsCreateInput[] = [
+  {
+    price: 11000,
+    product: {
+      connect: {
+        id: 1,
+      },
+    },
+    order: {
       connect: {
         id: 1,
       },
@@ -45,6 +59,7 @@ const orderData: Prisma.OrderCreateInput[] = [
 
 const invoiceData: Prisma.InvoiceCreateInput[] = [
   {
+    number: "2022/01",
     order: {
       connect: {
         id: 1,
@@ -64,35 +79,45 @@ const load = async () => {
     await prisma.order.deleteMany();
     console.log(`Deleted all orders`);
 
+    await prisma.orderOfProducts.deleteMany();
+    console.log(`Deleted all orderOfProducts`);
+
     await prisma.invoice.deleteMany();
     console.log(`Deleted all invoices`);
 
     console.log(`Start seeding ...`);
 
-    for (const u of clientData) {
+    for (const data of clientData) {
       const client = await prisma.client.create({
-        data: u,
+        data,
       });
       console.log(`Created client with id: ${client.id}`);
     }
 
-    for (const u of productData) {
+    for (const data of productData) {
       const product = await prisma.product.create({
-        data: u,
+        data,
       });
       console.log(`Created product with id: ${product.id}`);
     }
 
-    for (const u of orderData) {
+    for (const data of orderData) {
       const order = await prisma.order.create({
-        data: u,
+        data,
       });
       console.log(`Created order with id: ${order.id}`);
     }
 
-    for (const u of invoiceData) {
+    for (const data of orderOfProductsData) {
+      const orderOfProducts = await prisma.orderOfProducts.create({
+        data,
+      });
+      console.log(`Created orderOfProducts with id: ${orderOfProducts.id}`);
+    }
+
+    for (const data of invoiceData) {
       const invoice = await prisma.invoice.create({
-        data: u,
+        data,
       });
       console.log(`Created invoice with id: ${invoice.id}`);
     }
