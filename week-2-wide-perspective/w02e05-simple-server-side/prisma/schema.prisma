@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../database/dev.db"
+}
+
+model Client {
+  id    Int     @id @default(autoincrement())
+  name  String?
+  email String  @unique
+
+  order Order[]
+
+  @@map("clients")
+}
+
+model Product {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name  String
+  price Int
+
+  order   Order? @relation(fields: [orderId], references: [id])
+  orderId Int?
+
+  @@map("products")
+}
+
+model Order {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  client   Client @relation(fields: [clientId], references: [id])
+  clientId Int
+
+  products Product[]
+
+  Invoice Invoice[]
+
+  @@map("orders")
+}
+
+model Invoice {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  order   Order @relation(fields: [orderId], references: [id])
+  orderId Int
+
+  @@map("invoices")
+}
