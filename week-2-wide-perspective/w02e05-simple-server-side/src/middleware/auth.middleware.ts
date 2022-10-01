@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-export function AuthMiddleware(req: Request, res: Response, next: NextFunction) {
+export async function authMiddleware(req: Request, res: Response, next: NextFunction) {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
@@ -11,10 +11,12 @@ export function AuthMiddleware(req: Request, res: Response, next: NextFunction) 
     const { JWT_SECRET_TOKEN = "supersecret" } = process.env;
 
     const decodedToken = jwt.verify(token, JWT_SECRET_TOKEN);
+    const { email } = decodedToken as { email: string };
 
     if (!decodedToken) {
       res.status(401).send("Unauthorized");
     } else {
+      res.locals.email = email;
       next();
     }
   }
