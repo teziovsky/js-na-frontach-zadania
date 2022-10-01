@@ -1,0 +1,7 @@
+POST http://localhost:5100/auth/signup
+Content-Type: application/json
+
+{
+  "email": "jakub@prisma.io",
+  "name": "Jakub"
+}
