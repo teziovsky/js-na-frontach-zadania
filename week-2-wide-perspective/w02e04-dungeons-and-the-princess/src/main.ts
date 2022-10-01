@@ -25,24 +25,28 @@ const knightBruce = new Person("Bruce", "knight");
 // Próba "odbicia" królewny z podziemi lochów:
 
 // Misja ratunkowa nr 1:
+console.log("Misja ratunkowa nr 1:");
 hades.initTheBarricades();
 kingdom.gotoTheDungeon(knightJohn);
 kingdom.gotoTheDungeon(knightBrienne);
 kingdom.gotoTheDungeon(kingFrancis);
 
 // Misja ratunkowa nr 2:
+console.log("Misja ratunkowa nr 2:");
 hades.initTheBarricades();
 kingdom.gotoTheDungeon(knightJohn);
 kingdom.gotoTheDungeon(knightBrienne);
 kingdom.gotoTheDungeon(peasantMathew);
 
 // Misja ratunkowa nr 3:
+console.log("Misja ratunkowa nr 3:");
 hades.initTheBarricades();
 kingdom.gotoTheDungeon(knightJohn);
 kingdom.gotoTheDungeon(knightBrienne);
 kingdom.gotoTheDungeon(queenBianca);
 
 // Misja ratunkowa 4:
+console.log("Misja ratunkowa nr 4:");
 hades.initTheBarricades();
 kingdom.gotoTheDungeon(knightJohn);
 kingdom.gotoTheDungeon(knightBrienne);
