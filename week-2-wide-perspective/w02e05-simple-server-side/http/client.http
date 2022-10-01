@@ -1,0 +1,10 @@
+GET http://localhost:5100/clients
+authorization: Bearer: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impha3ViQHByaXNtYS5pbyIsImlhdCI6MTY2NDY1MTYxNiwiZXhwIjoxNjY0NzM4MDE2fQ.H_OF0Gk9cWJONLNwhKIWZ1K052b6yQJhLL1nweYIfME
+
+###
+
+GET http://localhost:5100/clients/me
+authorization: Bearer: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impha3ViQHByaXNtYS5pbyIsImlhdCI6MTY2NDY1MTYxNiwiZXhwIjoxNjY0NzM4MDE2fQ.H_OF0Gk9cWJONLNwhKIWZ1K052b6yQJhLL1nweYIfME
+
+###
+

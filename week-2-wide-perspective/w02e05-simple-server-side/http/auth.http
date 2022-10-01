@@ -1,7 +1,38 @@
-POST http://localhost:5100/auth/signup
+POST http://localhost:5100/auth/register
 Content-Type: application/json
 
 {
   "email": "jakub@prisma.io",
-  "name": "Jakub"
+  "name": "Jakub",
+  "password": "Password123"
+}
+
+###
+
+POST http://localhost:5100/auth/login
+Content-Type: application/json
+
+{
+  "email": "jakub@prisma.io",
+  "password": "Password123"
+}
+
+###
+# Invalid email
+POST http://localhost:5100/auth/login
+Content-Type: application/json
+
+{
+  "email": "jakub@prisma.io",
+  "password": "Password123$%"
+}
+
+###
+# Invalid password
+POST http://localhost:5100/auth/login
+Content-Type: application/json
+
+{
+  "email": "jakub@prisma.ioa",
+  "password": "Password123$%"
 }
