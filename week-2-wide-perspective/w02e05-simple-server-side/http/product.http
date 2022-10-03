@@ -1,4 +1,7 @@
 GET http://localhost:5100/products
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impha3ViQHByaXNtYS5pbyIsImlhdCI6MTY2NDgyNzk1NywiZXhwIjoxNjY0OTE0MzU3fQ.YA4sg7x2YfZh6natx2ZnmUe9unP1p4C9divowIyaZzU
 
 ###
 
+GET http://localhost:5100/products/1
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impha3ViQHByaXNtYS5pbyIsImlhdCI6MTY2NDgyNzk1NywiZXhwIjoxNjY0OTE0MzU3fQ.YA4sg7x2YfZh6natx2ZnmUe9unP1p4C9divowIyaZzU
