@@ -2,8 +2,7 @@
   "name": "w01e04-light-me-up",
   "version": "1.0.0",
   "scripts": {
-    "dev:ex1": "nodemon src/ex1.ts",
-    "dev:ex2": "nodemon src/ex2.ts"
+    "dev": "nodemon src/main.ts"
   },
   "devDependencies": {
     "nodemon": "2.0.20",
