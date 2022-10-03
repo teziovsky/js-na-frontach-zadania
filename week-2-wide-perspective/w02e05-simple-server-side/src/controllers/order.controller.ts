@@ -3,27 +3,27 @@ import { Request, Response, Router } from "express";
 
 const prisma = new PrismaClient();
 
-export const productController = Router();
+export const orderController = Router();
 
-productController.get("", async (req: Request, res: Response) => {
+orderController.get("", async (req: Request, res: Response) => {
   try {
-    const products = await prisma.product.findMany();
+    const orders = await prisma.order.findMany();
 
-    res.status(200).json({ products });
+    res.status(200).json({ orders });
   } catch (error) {
     res.status(400).json({ message: error });
   }
 });
 
-productController.get("/:id", async (req: Request, res: Response) => {
+orderController.get("/:id", async (req: Request, res: Response) => {
   try {
-    const product = await prisma.product.findUnique({
+    const order = await prisma.order.findUnique({
       where: {
         id: Number(req.params.id),
       },
     });
 
-    res.status(200).json({ ...product });
+    res.status(200).json({ ...order });
   } catch (error) {
     res.status(400).json({ message: error });
   }
