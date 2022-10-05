@@ -19,7 +19,7 @@ clientController.get("/me", async (req: Request, res: Response) => {
   try {
     const me = await prisma.client.findUnique({
       where: {
-        email: res.locals.email,
+        email: res.locals.user.email,
       },
     });
 

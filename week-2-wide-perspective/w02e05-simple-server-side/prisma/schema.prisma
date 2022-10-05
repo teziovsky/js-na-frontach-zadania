@@ -16,7 +16,8 @@ model Client {
   email    String  @unique
   password String
 
-  order Order[]
+  order    Order[]
+  invoice  Invoice[]
 
   @@map("clients")
 }
@@ -42,7 +43,7 @@ model Order {
   client   Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
   clientId Int
 
-  Invoice Invoice?
+  invoice Invoice?
 
   products OrderOfProducts[]
 
@@ -66,10 +67,14 @@ model Invoice {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  number    String
+  year      Int
+  number    Int
 
   order   Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
   orderId Int   @unique
+
+  client   Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId Int   @unique
 
   @@map("invoices")
 }

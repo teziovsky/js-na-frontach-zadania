@@ -11,12 +11,15 @@ export async function authMiddleware(req: Request, res: Response, next: NextFunc
     const { JWT_SECRET_TOKEN = "supersecret" } = process.env;
 
     const decodedToken = jwt.verify(token, JWT_SECRET_TOKEN);
-    const { email } = decodedToken as { email: string };
+    const { id, email } = decodedToken as { id: number; email: string };
 
     if (!decodedToken) {
       res.status(401).send("Unauthorized");
     } else {
-      res.locals.email = email;
+      res.locals.user = {
+        id,
+        email,
+      };
       next();
     }
   }

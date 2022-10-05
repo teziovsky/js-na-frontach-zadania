@@ -29,6 +29,14 @@ const productData: Prisma.ProductCreateInput[] = [
     name: "iPhone 13 Pro",
     price: 5200,
   },
+  {
+    name: "iPad Pro",
+    price: 4000,
+  },
+  {
+    name: "Apple Watch Series 7",
+    price: 3000,
+  },
 ];
 
 const orderData: Prisma.OrderCreateInput[] = [
@@ -38,31 +46,27 @@ const orderData: Prisma.OrderCreateInput[] = [
         id: 1,
       },
     },
-  },
-];
-
-const orderOfProductsData: Prisma.OrderOfProductsCreateInput[] = [
-  {
-    price: 11000,
-    product: {
-      connect: {
-        id: 1,
-      },
+    products: {
+      create: [
+        {
+          price: 12000,
+          product: {
+            connect: {
+              id: 3,
+            },
+          },
+        },
+      ],
     },
-    order: {
-      connect: {
-        id: 1,
-      },
-    },
-  },
-];
-
-const invoiceData: Prisma.InvoiceCreateInput[] = [
-  {
-    number: "2022/01",
-    order: {
-      connect: {
-        id: 1,
+    invoice: {
+      create: {
+        year: new Date().getFullYear(),
+        number: 1,
+        client: {
+          connect: {
+            id: 1,
+          },
+        },
       },
     },
   },
@@ -106,20 +110,6 @@ const load = async () => {
         data,
       });
       console.log(`Created order with id: ${order.id}`);
-    }
-
-    for (const data of orderOfProductsData) {
-      const orderOfProducts = await prisma.orderOfProducts.create({
-        data,
-      });
-      console.log(`Created orderOfProducts with id: ${orderOfProducts.id}`);
-    }
-
-    for (const data of invoiceData) {
-      const invoice = await prisma.invoice.create({
-        data,
-      });
-      console.log(`Created invoice with id: ${invoice.id}`);
     }
 
     console.log(`Seeding finished.`);

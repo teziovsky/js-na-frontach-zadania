@@ -1,3 +1,5 @@
+### Register
+
 POST http://localhost:5100/auth/register
 Content-Type: application/json
 
@@ -7,7 +9,7 @@ Content-Type: application/json
   "password": "Password123"
 }
 
-###
+### Correct credentials
 
 POST http://localhost:5100/auth/login
 Content-Type: application/json
@@ -17,8 +19,8 @@ Content-Type: application/json
   "password": "Password123"
 }
 
-###
-# Invalid email
+### Invalid email
+
 POST http://localhost:5100/auth/login
 Content-Type: application/json
 
@@ -27,8 +29,8 @@ Content-Type: application/json
   "password": "Password123$%"
 }
 
-###
-# Invalid password
+### Invalid password
+
 POST http://localhost:5100/auth/login
 Content-Type: application/json
 

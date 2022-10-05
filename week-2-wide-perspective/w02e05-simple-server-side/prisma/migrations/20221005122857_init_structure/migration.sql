@@ -41,9 +41,12 @@ CREATE TABLE "invoices" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
-    "number" TEXT NOT NULL,
+    "year" INTEGER NOT NULL,
+    "number" INTEGER NOT NULL,
     "orderId" INTEGER NOT NULL,
-    CONSTRAINT "invoices_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "orders" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    "clientId" INTEGER NOT NULL,
+    CONSTRAINT "invoices_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "orders" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "invoices_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "clients" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CreateIndex
@@ -51,3 +54,6 @@ CREATE UNIQUE INDEX "clients_email_key" ON "clients"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "invoices_orderId_key" ON "invoices"("orderId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "invoices_clientId_key" ON "invoices"("clientId");

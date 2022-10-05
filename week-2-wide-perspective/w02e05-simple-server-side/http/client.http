@@ -1,10 +1,9 @@
-GET http://localhost:5100/clients
-authorization: Bearer: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impha3ViQHByaXNtYS5pbyIsImlhdCI6MTY2NDgyNzk1NywiZXhwIjoxNjY0OTE0MzU3fQ.YA4sg7x2YfZh6natx2ZnmUe9unP1p4C9divowIyaZzU
+### Get all clients
 
-###
+GET http://localhost:5100/clients
+authorization: Bearer: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJqYWt1YkBwcmlzbWEuaW8iLCJpYXQiOjE2NjQ5NzIzMTIsImV4cCI6MTY2NTA1ODcxMn0.H1MdQd7pDwpyBXGyPM4woHNFcK7UpwEX9yEDjnT1tvA
+
+### Get logged client info
 
 GET http://localhost:5100/clients/me
-authorization: Bearer: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impha3ViQHByaXNtYS5pbyIsImlhdCI6MTY2NDgyNzk1NywiZXhwIjoxNjY0OTE0MzU3fQ.YA4sg7x2YfZh6natx2ZnmUe9unP1p4C9divowIyaZzU
-
-###
-
+authorization: Bearer: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJqYWt1YkBwcmlzbWEuaW8iLCJpYXQiOjE2NjQ5NzIzMTIsImV4cCI6MTY2NTA1ODcxMn0.H1MdQd7pDwpyBXGyPM4woHNFcK7UpwEX9yEDjnT1tvA

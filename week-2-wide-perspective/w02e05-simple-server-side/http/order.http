@@ -1,7 +1,39 @@
+### Get all orders
+
 GET http://localhost:5100/orders
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impha3ViQHByaXNtYS5pbyIsImlhdCI6MTY2NDgyNzk1NywiZXhwIjoxNjY0OTE0MzU3fQ.YA4sg7x2YfZh6natx2ZnmUe9unP1p4C9divowIyaZzU
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJqYWt1YkBwcmlzbWEuaW8iLCJpYXQiOjE2NjQ5NzIzMTIsImV4cCI6MTY2NTA1ODcxMn0.H1MdQd7pDwpyBXGyPM4woHNFcK7UpwEX9yEDjnT1tvA
 
-###
+### Get order by id
 
-GET http://localhost:5100/orders/1
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impha3ViQHByaXNtYS5pbyIsImlhdCI6MTY2NDgyNzk1NywiZXhwIjoxNjY0OTE0MzU3fQ.YA4sg7x2YfZh6natx2ZnmUe9unP1p4C9divowIyaZzU
+GET http://localhost:5100/orders/2
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJqYWt1YkBwcmlzbWEuaW8iLCJpYXQiOjE2NjQ5NzIzMTIsImV4cCI6MTY2NTA1ODcxMn0.H1MdQd7pDwpyBXGyPM4woHNFcK7UpwEX9yEDjnT1tvA
+
+### Create order
+
+POST http://localhost:5100/orders
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJqYWt1YkBwcmlzbWEuaW8iLCJpYXQiOjE2NjQ5NzIzMTIsImV4cCI6MTY2NTA1ODcxMn0.H1MdQd7pDwpyBXGyPM4woHNFcK7UpwEX9yEDjnT1tvA
+Content-Type: application/json
+
+{
+    "products": [1, 2]
+}
+
+### Create order with invalid products type
+
+POST http://localhost:5100/orders
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJqYWt1YkBwcmlzbWEuaW8iLCJpYXQiOjE2NjQ5NzIzMTIsImV4cCI6MTY2NTA1ODcxMn0.H1MdQd7pDwpyBXGyPM4woHNFcK7UpwEX9yEDjnT1tvA
+Content-Type: application/json
+
+{
+  "products": "1"
+}
+
+### Create order with invalid products id types
+
+POST http://localhost:5100/orders
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJqYWt1YkBwcmlzbWEuaW8iLCJpYXQiOjE2NjQ5NzIzMTIsImV4cCI6MTY2NTA1ODcxMn0.H1MdQd7pDwpyBXGyPM4woHNFcK7UpwEX9yEDjnT1tvA
+Content-Type: application/json
+
+{
+  "products": [1, "2"]
+}
