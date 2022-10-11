@@ -1,4 +1,4 @@
-import { fruitsData } from "./data-store/fruits.js";
+ import { fruitsData } from "./data-store/fruits.js";
 import { randomAlbumData } from "./data-store/music-album.js";
 import { usersData } from "./data-store/users.js";
 import {
@@ -6,9 +6,9 @@ import {
   getItemByKey,
   getItemsCount,
   getItemsSum,
-  getMinValueByKey,
+  getMinValue,
   getValuesStartsWith,
-} from "./getDataFunctions.js";
+} from "./getDataFunctions.old.js";
 
 // Do wyliczenia danych poniżej użyj faktycznego źródła: randomAlbumData
 console.log(`-- Album Info -- 
@@ -16,7 +16,7 @@ Genre: ${getAllItemsByKey(randomAlbumData.genres, "name")}
 Artist: ${getItemByKey(randomAlbumData.artist, "name")}
 Number of tracks: ${getItemsCount(randomAlbumData.tracks)}
 Total album duration: ${getItemsSum(randomAlbumData.tracks, "duration")}
-Shortest track: "${getMinValueByKey(randomAlbumData.tracks, "duration").title}"
+Shortest track: "${getMinValue(randomAlbumData.tracks, "duration").title}"
 `);
 
 // Do wyliczenia danych poniżej użyj faktycznego źródła: fruitsData
@@ -29,5 +29,5 @@ Lowest calories: ${fruitsData.reduce((acc, fruit) => acc.nutritions.calories < f
 // Do wyliczenia danych poniżej użyj faktycznego źródła: usersData
 console.log(`-- Users Info -- 
 All user names: ${getAllItemsByKey(usersData, "name")}
-User shortest website name: ${getMinValueByKey(usersData, "website").website}
+User shortest website name: ${getMinValue(usersData, "website").website}
 `);
