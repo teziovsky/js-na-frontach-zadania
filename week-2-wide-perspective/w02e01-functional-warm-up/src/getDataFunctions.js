@@ -30,7 +30,7 @@ function isString(item) {
 
 function getLowestValue(a, b, key) {
   if (!getItemByKey(a, key)) return b;
-  if (!getItemByKey(b, key)) return getItemByKey(a, key);
+  if (!getItemByKey(b, key)) return a;
   if (isNumber(getItemByKey(a, key)) && isNumber(getItemByKey(b, key))) return getItemByKey(a, key) < getItemByKey(b, key) ? a : b;
   if (isString(getItemByKey(a, key)) && isString(getItemByKey(b, key))) return getItemByKey(a, key).length < getItemByKey(b, key).length ? a : b;
 }
