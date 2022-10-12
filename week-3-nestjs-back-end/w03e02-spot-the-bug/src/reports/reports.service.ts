@@ -17,7 +17,9 @@ export class ReportsService {
         },
       });
     } catch (error) {
-      throw new ForbiddenException("You don't have access to this resource");
+      throw new ForbiddenException(
+        "You don't have access to this resource, please log in",
+      );
     }
   }
 }
