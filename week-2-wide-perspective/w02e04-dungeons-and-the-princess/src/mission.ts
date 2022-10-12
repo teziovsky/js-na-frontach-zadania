@@ -3,7 +3,7 @@ import { Person } from "./models/person";
 import { Underground } from "./models/underground";
 
 export function mission(number: number,hades: Underground, kingdom: Castle, persons: [Person, Person, Person]) {
-  console.log(`Misja ratunkowa nr ${number}:`);
+  console.log(`Rescue mission nr ${number}:`);
   hades.initTheBarricades();
   try {
     kingdom.gotoTheDungeon(persons[0]);
