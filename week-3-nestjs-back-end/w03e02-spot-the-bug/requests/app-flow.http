@@ -14,8 +14,16 @@ Content-Type: application/json
   "email": "donna@reporterzz.com"
 }
 
+### Log in user #3 – Invalid credentials
+POST http://localhost:3300/users/sign-in
+Content-Type: application/json
+
+{
+  "email": "admin@example.com"
+}
+
 
 ### Get User reports
 GET http://localhost:3300/reports
 Content-Type: application/json
-Authorization: l8vst1ui
+Authorization: l960ggd9
