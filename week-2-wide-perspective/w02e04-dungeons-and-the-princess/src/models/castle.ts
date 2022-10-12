@@ -8,9 +8,7 @@ export class Castle {
   gotoTheDungeon(daredevil: Person) {
     // #RQ1: peasant cannot be at the Castle !
     if (daredevil.title === "peasant") {
-      console.error('\x1b[31m%s\x1b[0m', "Peasant cannot be at the Castle!");
-      console.log();
-      return;
+      throw new Error("Peasant cannot be at the Castle!");
     }
 
     this.dungeon.enter(daredevil);

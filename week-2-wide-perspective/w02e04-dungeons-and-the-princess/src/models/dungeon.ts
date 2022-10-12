@@ -8,9 +8,7 @@ export class Dungeon {
   enter(p: Person) {
     // #RQ2: queen cannot enter the dungeon!
     if (p.title === "queen") {
-      console.error('\x1b[31m%s\x1b[0m', "Queen cannot enter the dungeon!");
-      console.log();
-      return;
+      throw new Error("Queen cannot enter the dungeon!");
     }
 
     this.underground.enter(p);

@@ -10,9 +10,7 @@ export class Underground {
   enter(savior: Person) {
     // #RQ3: king cannot enter Underground !
     if (savior.title === "king") {
-      console.error('\x1b[31m%s\x1b[0m', "King cannot enter Underground!");
-      console.log();
-      return;
+      throw new Error("King cannot enter Underground!");
     }
 
     savior.shoutTheName();
@@ -29,9 +27,8 @@ export class Underground {
     // #RQ5: If not knight Evil dragon will set up new barricade
     // #RQ6: one knight will remove one barricade
     if (savior.title !== "knight") {
-      console.error('\x1b[31m%s\x1b[0m', "Only knight can attempt to save prisoner!");
-      console.log();
       this.setNewBarricade();
+      throw new Error("Only knight can attempt to save prisoner!");
     }
 
     if (savior.title === "knight") {
