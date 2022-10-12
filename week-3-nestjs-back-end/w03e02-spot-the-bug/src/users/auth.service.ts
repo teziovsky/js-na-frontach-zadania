@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { Token } from './model/Token';
 import { UsersService } from './users.service';
@@ -18,7 +18,7 @@ export class AuthService {
       return authToken.value;
     } catch (e) {
       this.currentUser = undefined;
-      return '';
+      throw new ForbiddenException('Invalid email');
     }
   }
 
