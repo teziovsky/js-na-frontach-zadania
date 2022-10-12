@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from '../persistence/prisma.service';
 import { AuthService } from '../users/auth.service';
 
@@ -10,10 +10,14 @@ export class ReportsService {
   ) {}
 
   findAll() {
-    return this.prisma.report.findMany({
-      where: {
-        ownerId: this.authService.getCurrentUser().id,
-      },
-    });
+    try {
+      return this.prisma.report.findMany({
+        where: {
+          ownerId: this.authService.getCurrentUser().id,
+        },
+      });
+    } catch (error) {
+      throw new ForbiddenException("You don't have access to this resource");
+    }
   }
 }
