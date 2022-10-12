@@ -4,7 +4,7 @@ import { usersRepository } from "./users.repository.js";
 
 export const usersController = new Router();
 
-usersController.get("", paginationMiddleware, (req, res) => {
+usersController.get("", paginationMiddleware(), (req, res) => {
   const users = usersRepository.find(req.pagination);
   res.json(users);
 });
