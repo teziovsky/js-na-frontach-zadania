@@ -1,7 +1,9 @@
+import { mission } from "./mission";
 import { Castle } from "./models/castle";
 import { Dungeon } from "./models/dungeon";
 import { Person } from "./models/person";
 import { Underground } from "./models/underground";
+
 /**
  * Dla uproszczenia obrazu sprawy — wszystkie klasy i logika aplikacji
  * zostały napisane w jednym pliku.
@@ -25,29 +27,13 @@ const knightBruce = new Person("Bruce", "knight");
 // Próba "odbicia" królewny z podziemi lochów:
 
 // Misja ratunkowa nr 1:
-console.log("Misja ratunkowa nr 1:");
-hades.initTheBarricades();
-kingdom.gotoTheDungeon(knightJohn);
-kingdom.gotoTheDungeon(knightBrienne);
-kingdom.gotoTheDungeon(kingFrancis);
+mission(1,hades, kingdom, [knightJohn, knightBrienne, kingFrancis]);
 
 // Misja ratunkowa nr 2:
-console.log("Misja ratunkowa nr 2:");
-hades.initTheBarricades();
-kingdom.gotoTheDungeon(knightJohn);
-kingdom.gotoTheDungeon(knightBrienne);
-kingdom.gotoTheDungeon(peasantMathew);
+mission(2, hades,kingdom, [knightJohn, knightBrienne, peasantMathew]);
 
 // Misja ratunkowa nr 3:
-console.log("Misja ratunkowa nr 3:");
-hades.initTheBarricades();
-kingdom.gotoTheDungeon(knightJohn);
-kingdom.gotoTheDungeon(knightBrienne);
-kingdom.gotoTheDungeon(queenBianca);
+mission(3, hades,kingdom, [knightJohn, knightBrienne, queenBianca]);
 
 // Misja ratunkowa 4:
-console.log("Misja ratunkowa nr 4:");
-hades.initTheBarricades();
-kingdom.gotoTheDungeon(knightJohn);
-kingdom.gotoTheDungeon(knightBrienne);
-kingdom.gotoTheDungeon(knightBruce);
+mission(3, hades,kingdom, [knightJohn, knightBrienne, knightBruce]);
