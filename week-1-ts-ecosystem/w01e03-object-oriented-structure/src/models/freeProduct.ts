@@ -1,7 +1,13 @@
-import { BaseProduct } from "./baseProduct";
+import { BaseProduct, ProductType } from "./baseProduct";
 
 export class FreeProduct extends BaseProduct {
-  constructor(id: number, name: string, count: number, public type: "Free") {
-    super(id, name, count)
+  public type: Extract<ProductType, "Free"> = "Free";
+
+  constructor(id: number, name: string, count: number) {
+    super(id, name, count);
+  }
+
+  getTotalPrice() {
+    return 0;
   }
 }

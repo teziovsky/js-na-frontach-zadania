@@ -1,7 +1,13 @@
-import { BaseProduct } from "./baseProduct";
+import { BaseProduct, ProductType } from "./baseProduct";
 
 export class AuctionProduct extends BaseProduct {
-  constructor(id: number, name: string, count: number, public price: number, public type: "Auction") {
-    super(id, name, count)
+  public type: Extract<ProductType, "Auction"> = "Auction";
+
+  constructor(id: number, name: string, count: number, public price: number) {
+    super(id, name, count);
+  }
+
+  getTotalPrice() {
+    return this.price * this.count;
   }
 }
