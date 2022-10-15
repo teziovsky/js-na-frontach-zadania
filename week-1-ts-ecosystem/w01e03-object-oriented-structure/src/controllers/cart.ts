@@ -2,7 +2,7 @@ import { AuctionProduct } from "../models/auctionProduct";
 import { BuyNowProduct } from "../models/buyNowProduct";
 import { FreeProduct } from "../models/freeProduct";
 
-export class Cart<TYPE extends BuyNowProduct | FreeProduct | AuctionProduct> {
+export class Cart<TYPE extends BuyNowProduct | AuctionProduct | FreeProduct> {
   private products: TYPE[] = [];
 
   addProduct(product: TYPE) {
@@ -26,13 +26,7 @@ export class Cart<TYPE extends BuyNowProduct | FreeProduct | AuctionProduct> {
   }
 
   getTotalPrice() {
-    return this.products.reduce((acc, product) => {
-      if ("price" in product) {
-        return acc + (product.price * product.count);
-      }
-
-      return acc;
-    }, 0);
+    return this.products.reduce((acc, product) => acc + product.getTotalPrice(), 0).toFixed(2);
   }
 
   getProductCount() {
