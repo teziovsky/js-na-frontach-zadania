@@ -17,4 +17,20 @@ describe('AuthService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  it('should throw error when wrong credentials', async () => {
+    await expect(
+      service.signIn('jakub@example.pl', 'pass123'),
+    ).rejects.toThrowError();
+  });
+
+  it('should return token when correct credentials', async () => {
+    const token = await service.signIn('peter@myclient.com', 'som3pa55w0rd');
+    expect(token).toBeDefined();
+  });
+
+  it('should sign out', async () => {
+    const { accessToken } = await service.signOut(1);
+    expect(accessToken).toBeNull();
+  });
 });
