@@ -2,10 +2,17 @@
   "name": "w04e01-simple-testing",
   "version": "1.0.0",
   "scripts": {
-    "start": "node src/main.js"
+    "start": "node src/main.js",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "inquirer": "^9.1.3"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "vite": "3.1.8",
+    "vitest": "0.24.3"
+  }
 }
