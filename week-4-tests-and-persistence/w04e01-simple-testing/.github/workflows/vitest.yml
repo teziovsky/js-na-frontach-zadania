@@ -2,7 +2,9 @@ name: Runs All Unit tests
 
 on:
   push:
-    branches: [solutions/week4/e01]
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   build:
