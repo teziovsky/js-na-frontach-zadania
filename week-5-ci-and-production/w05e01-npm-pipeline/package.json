@@ -10,7 +10,7 @@
     "test:ui": "npm run test -- --ui",
     "test:once": "npm run test -- --run",
     "build": "npm run test:once && npm run transpile && npm run bundle && npm run copy-index",
-    "dev": "npm run transpile -- --watch && npm run bundle && npm run copy-index npm run serve"
+    "dev": "npm run copy-index && npm run transpile -- --watch & npm run bundle -- --watch & npm run serve -- --watch"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^4.0.0",
