@@ -1,0 +1,38 @@
+name: API – Stage Deploy
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'shopping-lister-api/**'
+
+jobs:
+  test_build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./shopping-lister-api
+      - name: Format code and check for errors
+        run: npm run lint:full
+        working-directory: ./shopping-lister-api
+      - name: Run tests
+        run: npm run test
+        working-directory: ./shopping-lister-api
+      - name: Build project
+        run: npm run build
+        working-directory: ./shopping-lister-api
+      - name: Deploy
+        run: |
+          mkdir -p ~/shopping-lister-api-stage
+          cp -a . ~/shopping-lister-api-stage/
+          cd ~/shopping-lister-api-stage
+          npm install -g pm2
+          pm2 start --name "shopping-lister-api-stage" ./ecosystem.config.js
+        working-directory: ./shopping-lister-api
