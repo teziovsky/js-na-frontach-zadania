@@ -26,7 +26,7 @@ const data: ShoppingList[] = [
       name: "Onions",
       quantity: 2,
       value: 3,
-      unit: 'kylo',
+      unit: "kg",
     }),
   ]),
 ];
