@@ -8,4 +8,5 @@ async function bootstrap() {
   await app.listen(PORT);
   console.log(`Server is up http://localhost:${PORT}`);
 }
+
 bootstrap();

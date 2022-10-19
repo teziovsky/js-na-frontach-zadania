@@ -1,4 +1,6 @@
 import { Controller, Get, Param, ParseIntPipe, Req } from '@nestjs/common';
+import { Pagination } from '../shared/Pagination';
+import { GetPagination } from '../shared/pagination.decorator';
 import { UsersRepository } from './users.repository';
 
 @Controller('users')
@@ -6,20 +8,8 @@ export class UsersController {
   constructor(private readonly usersRepository: UsersRepository) {}
 
   @Get()
-  getAll(@Req() req) {
-    const { skip, limit } = req.query;
-    let computedSkip = 0;
-    if (skip) {
-      computedSkip = Number(skip);
-    }
-    let computedLimit;
-    if (limit) {
-      computedLimit = Number(limit);
-    }
-    return this.usersRepository.find({
-      skip: computedSkip,
-      limit: computedLimit,
-    });
+  getAll(@GetPagination() pagination: Pagination) {
+    return this.usersRepository.find(pagination);
   }
 
   @Get(':id')
