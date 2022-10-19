@@ -1,13 +1,13 @@
-import { defineComponent, onMounted, ref } from 'vue'
-import { shoppingListsService } from './shopping-lists/shopping-lists.service'
+import { defineComponent, onMounted, ref } from "vue";
+import { shoppingListsService } from "./shopping-lists/shopping-lists.service";
 
 export default defineComponent({
   setup() {
-    const lists = ref()
+    const lists = ref();
     onMounted(async () => {
-      lists.value = await shoppingListsService.getAll()
-    })
-    return { lists }
+      lists.value = await shoppingListsService.getAll();
+    });
+    return { lists };
   },
   template: `
      <aside>
@@ -19,4 +19,4 @@ export default defineComponent({
         </ul>
       </aside>
    `,
-})
+});

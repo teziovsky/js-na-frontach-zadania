@@ -1,5 +1,5 @@
-import { defineComponent, PropType } from 'vue'
-import { Product } from './model/Product'
+import { defineComponent, PropType } from "vue";
+import { Product } from "./model/Product";
 
 export default defineComponent({
   props: {
@@ -19,4 +19,4 @@ export default defineComponent({
       <div class="ml-4">{{product.price}} PLN</div>
     </div>
   `,
-})
+});

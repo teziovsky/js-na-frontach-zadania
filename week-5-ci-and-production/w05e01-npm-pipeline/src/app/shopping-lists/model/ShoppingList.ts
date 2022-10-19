@@ -1,7 +1,7 @@
-import { Product } from './Product'
+import { Product } from "./Product";
 
 export interface ShoppingList {
-  id: string
-  name: string
-  products: Product[]
+  id: string;
+  name: string;
+  products: Product[];
 }

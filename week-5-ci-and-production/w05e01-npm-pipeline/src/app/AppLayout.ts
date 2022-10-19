@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
-import TheHeader from './TheHeader'
-import TheMenu from './TheMenu'
+import { defineComponent } from "vue";
+import TheHeader from "./TheHeader";
+import TheMenu from "./TheMenu";
 
 export default defineComponent({
   components: {
@@ -20,4 +20,4 @@ export default defineComponent({
       </div>
     </div>
   `,
-})
+});

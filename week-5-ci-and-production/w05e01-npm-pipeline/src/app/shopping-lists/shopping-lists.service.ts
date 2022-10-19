@@ -1,44 +1,44 @@
-import { v4 } from 'uuid'
-import { ShoppingList } from './model/ShoppingList'
-import { Product } from './model/Product'
+import { v4 } from "uuid";
+import { Product } from "./model/Product";
+import { ShoppingList } from "./model/ShoppingList";
 
 const data: ShoppingList[] = [
-  makeFakeList('Shopping #1', [
+  makeFakeList("Shopping #1", [
     makeFakeProduct({
-      name: 'SmartPhone',
+      name: "SmartPhone",
       quantity: 1,
       value: 2300,
-      unit: 'item',
+      unit: "item",
     }),
   ]),
-  makeFakeList('Groceries', [
-    makeFakeProduct({ name: 'Tomatoes', quantity: 2, value: 6, unit: 'kg' }),
+  makeFakeList("Groceries", [
+    makeFakeProduct({ name: "Tomatoes", quantity: 2, value: 6, unit: "kg" }),
     withStatus(
       makeFakeProduct({
-        name: 'Potatoes',
+        name: "Potatoes",
         quantity: 11,
         value: 2.44,
-        unit: 'kg',
+        unit: "kg",
       }),
-      'BOUGHT'
+      "BOUGHT",
     ),
     makeFakeProduct({
-      name: 'Onions',
+      name: "Onions",
       quantity: 2,
       value: 3,
       unit: 'kylo',
     }),
   ]),
-]
+];
 
 export const shoppingListsService = {
   async getAll(): Promise<readonly ShoppingList[]> {
-    return data
+    return data;
   },
   async getOne(id: string): Promise<ShoppingList | undefined> {
-    return data.find((sl) => sl.id === id)
+    return data.find((sl) => sl.id === id);
   },
-}
+};
 
 // Just some "FAKE" helpers here:
 
@@ -47,16 +47,16 @@ function makeFakeList(name: string, products: Product[] = []): ShoppingList {
     id: v4(),
     name,
     products,
-  }
+  };
 }
 
 function makeFakeProduct({
-  name,
-  quantity,
-  value,
-  description,
-  unit,
-}: Omit<Product, 'id' | 'status' | 'price'>): Product {
+                           name,
+                           quantity,
+                           value,
+                           description,
+                           unit,
+                         }: Omit<Product, "id" | "status" | "price">): Product {
   return {
     id: v4(),
     description,
@@ -65,12 +65,12 @@ function makeFakeProduct({
     value,
     unit,
     get price() {
-      return this.quantity * this.value
+      return this.quantity * this.value;
     },
-    status: 'AWAITING',
-  }
+    status: "AWAITING",
+  };
 }
 
-function withStatus(product: Product, status: 'AWAITING' | 'BOUGHT'): Product {
-  return { ...product, status }
+function withStatus(product: Product, status: "AWAITING" | "BOUGHT"): Product {
+  return { ...product, status };
 }
