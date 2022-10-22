@@ -4,35 +4,71 @@ on:
     branches:
       - main
     paths:
-      - 'shopping-lister-front/**'
+      - "shopping-lister-front/**"
+  workflow_dispatch:
 
 jobs:
-  test_build_and_deploy:
+  install_dependencies:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./shopping-lister-front
     steps:
       - uses: actions/checkout@v3
       - name: Cache node modules
         uses: actions/cache@v3
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          path: "**/node_modules"
+          key: ${{ runner.os }}-front-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
+  format_code_and_check_errors:
+    needs: install_dependencies
+    runs-on: ubuntu-latest
+    defaults:
+      run:
         working-directory: ./shopping-lister-front
-      - name: Format code and check for errors
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-front-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Format code and check errors
         run: npm run lint:full
+  test_unit:
+    needs: [install_dependencies, format_code_and_check_errors]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
         working-directory: ./shopping-lister-front
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-front-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Run tests
-        run: npm run test:unit
+        run: npm run test:unit:once
+  build_and_deploy:
+    needs: [install_dependencies, format_code_and_check_errors, test_unit]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
         working-directory: ./shopping-lister-front
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-front-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Build project
         run: npm run build
-        working-directory: ./shopping-lister-front
       - name: Deploy
         run: |
-          mkdir -p ~/shopping-lister-front-stage
-          cp -a . ~/shopping-lister-front-stage/
+          cp -a ./dist ~/shopping-lister-front-stage/
           cd ~/shopping-lister-front-stage
-          npm install -g pm2
-          pm2 start npm --name "shopping-lister-front-stage" -- preview
-        working-directory: ./shopping-lister-front
+          ls -la

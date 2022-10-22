@@ -4,30 +4,71 @@ on:
     branches:
       - main
     paths:
-      - 'shopping-lister-api/**'
+      - "shopping-lister-api/**"
+  workflow_dispatch:
 
 jobs:
-  test_build_and_deploy:
+  install_dependencies:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./shopping-lister-api
     steps:
       - uses: actions/checkout@v3
       - name: Cache node modules
         uses: actions/cache@v3
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          path: "**/node_modules"
+          key: ${{ runner.os }}-api-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
+  format_code_and_check_errors:
+    needs: install_dependencies
+    runs-on: ubuntu-latest
+    defaults:
+      run:
         working-directory: ./shopping-lister-api
-      - name: Format code and check for errors
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-api-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Format code and check errors
         run: npm run lint:full
+  test_unit:
+    needs: [install_dependencies, format_code_and_check_errors]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
         working-directory: ./shopping-lister-api
-      - name: Run tests
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-api-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Run tests unit
         run: npm run test
+  test_e2e:
+    needs: [install_dependencies, format_code_and_check_errors]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
         working-directory: ./shopping-lister-api
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-api-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Run tests e2e
+        run: npm run test:e2e
       - name: Build project
         run: npm run build
-        working-directory: ./shopping-lister-api
       - name: Deploy
         run: |
           mkdir -p ~/shopping-lister-api-stage
@@ -35,4 +76,24 @@ jobs:
           cd ~/shopping-lister-api-stage
           npm install -g pm2
           pm2 start --name "shopping-lister-api-stage" ./ecosystem.config.js
+  build_and_deploy:
+    needs: [install_dependencies, format_code_and_check_errors, test_unit, test_e2e]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
         working-directory: ./shopping-lister-api
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-api-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Build project
+        run: npm run build
+      - name: Deploy
+        run: |
+          cp -a . ~/shopping-lister-api-stage/
+          cd ~/shopping-lister-api-stage
+          npm install -g pm2
+          pm2 start ./ecosystem.config.js
