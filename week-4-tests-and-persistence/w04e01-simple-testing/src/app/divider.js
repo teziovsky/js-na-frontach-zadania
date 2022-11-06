@@ -1,9 +1,16 @@
 /*
  * Tę funkcjonalność chcemy przetestować:
  * */
-export function divider(dividend, divisor) {
-  if (typeof divisor !== "number") throw new Error("Divisor must be a number");
-  if (typeof dividend !== "number") throw new Error("Dividend must be a number");
+
+function notNumber(value, message) {
+  if (typeof value !== "number") {
+    throw new Error(message || "Value must be a number");
+  }
+}
+
+export function divider(dividend, divisor, digits = 0) {
+  notNumber(dividend, "Dividend must be a number");
+  notNumber(divisor, "Divisor must be a number");
   if (divisor === 0) throw new Error("Cannot divide by 0");
-  return dividend / divisor;
+  return (dividend / divisor).toFixed(digits);
 }
