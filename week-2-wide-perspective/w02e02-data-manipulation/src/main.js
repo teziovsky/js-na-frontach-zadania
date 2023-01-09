@@ -1,15 +1,14 @@
 import { annualOrderTile } from "./orders/components/AnnualOrderTile.js";
 import { orderTile } from "./orders/components/OrderTile.js";
 
-import OrdersService from "./orders/orders.service.js";
+import ordersService from "./orders/orders.service.js";
 
 async function main() {
   const year = 2022;
-  const orders = await OrdersService.getOrders();
-  const totalOrders = OrdersService.getTotalOrders(orders);
-  const totalIncomeOrders = OrdersService.getTotalIncome(orders);
-  const bestSale = OrdersService.getBestSale(orders);
-  const orders2022 = OrdersService.getOrdersByYear(orders, year);
+  const totalOrders = ordersService.getTotalOrders();
+  const totalIncomeOrders = ordersService.getTotalIncome();
+  const bestSale = ordersService.getBestSale();
+  const orders2022 = ordersService.getOrdersByYear(year);
 
   await orderTile("best-sale", bestSale);
   await orderTile("total-orders", totalOrders);
@@ -19,7 +18,7 @@ async function main() {
 
 const button = document.querySelector("[data-button]");
 button.addEventListener("click", async () => {
-  await OrdersService.addOrder();
+  await ordersService.addOrder();
   await main();
 });
 

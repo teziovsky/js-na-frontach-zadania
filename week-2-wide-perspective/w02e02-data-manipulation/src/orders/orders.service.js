@@ -12,26 +12,26 @@ export default {
         return orders;
       });
   },
-  getTotalOrders(orders) {
-    return orders.length;
+  getTotalOrders() {
+    return this.orders.length;
   },
-  getTotalIncome(orders) {
-    const totalIncome = orders.reduce((total, order) => total + order.sale, 0);
+  getTotalIncome() {
+    const totalIncome = this.orders.reduce((total, order) => total + order.sale, 0);
     return parseFloat(totalIncome).toFixed(2);
   },
-  getBestSale(orders) {
-    const bestSale = orders.reduce((acc, order) => acc.sale > order.sale ? acc : order);
+  getBestSale() {
+    const bestSale = this.orders.reduce((acc, order) => acc.sale > order.sale ? acc : order);
     return parseFloat(bestSale.sale).toFixed(2);
   },
-  getOrdersByYear(orders, year) {
-    return orders.filter(order => order.orderDate.startsWith(year));
+  getOrdersByYear(year) {
+    return this.orders.filter(order => order.orderDate.startsWith(year));
   },
-  getLastOrderNumber(orders) {
-    const lastOrderNumber = orders.reduce((acc, order) => acc.orderNumber > order.orderNumber ? acc : order);
+  getLastOrderNumber() {
+    const lastOrderNumber = this.orders.reduce((acc, order) => acc.orderNumber > order.orderNumber ? acc : order);
     return lastOrderNumber.orderNumber;
   },
-  getNewOrderNumber(orders) {
-    const lastOrderNumber = this.getLastOrderNumber(orders);
+  getNewOrderNumber() {
+    const lastOrderNumber = this.getLastOrderNumber(this.orders);
     const [number, year] = lastOrderNumber.split("/");
     return `${parseInt(number) + 1}/${year}`;
   },
